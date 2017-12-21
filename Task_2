@@ -1,0 +1,45 @@
+int n = 39;
+            double y = 40;
+            for (int i = n; i > 0; i--)
+            {
+                y = i + Math.Cos(y);
+            }
+            Console.Write("y=cos(1+cos(2+...+cos(39+cos40)...)) = " + y);
+
+            Console.WriteLine("\n\nInput amount of rates (>3): ");
+            string s = Console.ReadLine();
+            int amountOfRates = Int32.Parse(s);
+            if (amountOfRates > 3)
+            {
+                int[] rates = new int[amountOfRates];
+                for (int i = 0; i < rates.Length; i++)
+                {
+                    Console.Write("Input rate #{0} ", i + 1);
+                    string rate = Console.ReadLine();
+                    rates[i] = Int32.Parse(rate);
+                }
+                int temp;
+                for (int i = 0; i < rates.Length - 1; i++)
+                {
+                    for (int j = i + 1; j < rates.Length; j++)
+                    {
+                        if (rates[i] > rates[j])
+                        {
+                            temp = rates[i];
+                            rates[i] = rates[j];
+                            rates[j] = temp;
+                        }
+                    }
+                }
+                double avg = 0;
+                for (int i = 1; i < rates.Length - 1; i++)
+                {
+                    avg += rates[i];
+                }
+                avg /= rates.Length - 2;
+                Console.WriteLine("Rate is " + avg);
+            }
+            else
+            {
+                Console.WriteLine("Amount of rates must be more than 3.");
+            }
