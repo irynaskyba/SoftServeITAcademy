@@ -1,0 +1,77 @@
+{
+                //task 1
+                int firstNumber;
+                int secondNumber;
+                Console.Write("Input first number: ");
+                string a = Console.ReadLine();
+                Console.Write("Input second number: ");
+                string b = Console.ReadLine();
+                firstNumber = Int32.Parse(a);
+                secondNumber = Int32.Parse(b);
+                Console.WriteLine("{0} + {1} = {2}", firstNumber, secondNumber, (firstNumber + secondNumber));
+                Console.WriteLine("{0} - {1} = {2}", a, b, (firstNumber - secondNumber));
+                Console.WriteLine("{0} * {1} = {2}", a, b, (firstNumber * secondNumber));
+                Console.WriteLine("{0} / {1} = {2}", a, b, ((double)firstNumber / secondNumber));
+            }
+
+            {
+                //task 2
+                Console.WriteLine("\nHow are you?");
+                string answer = Console.ReadLine();
+                Console.WriteLine("You are {0}", answer);
+            }
+
+            {
+                //task 3
+                Console.WriteLine("\nWrite three characters: ");
+                string symbol1 = Console.ReadLine();
+                string symbol2 = Console.ReadLine();
+                string symbol3 = Console.ReadLine();
+                char character1 = Char.Parse(symbol1);
+                char character2 = Char.Parse(symbol2);
+                char character3 = Char.Parse(symbol3);
+                Console.WriteLine("You enter {0}, {1}, {2}", character1, character2, character3);
+            }
+
+            {
+                //task 4
+                int firstNumber;
+                int secondNumber;
+                Console.Write("\nInput first number: ");
+                string n1 = Console.ReadLine();
+                Console.Write("Input second number: ");
+                string n2 = Console.ReadLine();
+                firstNumber = Int32.Parse(n1);
+                secondNumber = Int32.Parse(n2);
+                string classify = (firstNumber > 0 && secondNumber > 0) ? "Numbers are positive" : "At least one number is negative";
+                Console.WriteLine(classify);
+            }
+
+            {
+                //HWTask1
+                Console.WriteLine("\nInput length of square.");
+                string s = Console.ReadLine();
+                int length = Int32.Parse(s);
+                int area = length * length;
+                int perimetr = 4 * length;
+                Console.WriteLine("Area of square with length {0} is {1}.\nPerimetr of square with length {0} is {2}.\n", length, area, perimetr);
+
+                string name;
+                int age;
+                Console.WriteLine("\nWhat is your name?");
+                name = Console.ReadLine();
+                Console.WriteLine("How old are you, {0}?", name);
+                string s1 = Console.ReadLine();
+                age = Int32.Parse(s1);
+                Console.WriteLine("Your name is {0} and your age is {1}", name, age);
+
+                Console.WriteLine("\nInput radius of circle: ");
+                double r;
+                string s2 = Console.ReadLine();
+                r = Double.Parse(s2);
+                double l = 2 * Math.PI * r;
+                double S = Math.PI * r * r;
+                double V = (4.0 / 3) * Math.PI * r * r * r;
+                Console.WriteLine("Radius of a circle is {0}, length is {1}, area is {2}, volume is {3}.", r, l, S, V);
+
+            }
