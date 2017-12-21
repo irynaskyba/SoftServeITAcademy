@@ -1,0 +1,38 @@
+//task 9 
+            int n = 39;
+            double y = 40;
+            for (int i = n - 1; i > 0; --i)
+            {
+                y = i + Math.Cos(y);
+            }
+            Console.WriteLine(y);
+
+            //task12
+            string s = Console.ReadLine();
+            int amountOfRates = Int32.Parse(s);
+            int[] rates = new int[amountOfRates];
+            for (int i = 0; i < rates.Length; i++)
+            {
+                string rate = Console.ReadLine();
+                rates[i] = Int32.Parse(rate);
+            }
+            int temp;
+            for (int i = 0; i < rates.Length - 1; i++)
+            {
+                for (int j = i + 1; j < rates.Length; j++)
+                {
+                    if (rates[i] > rates[j])
+                    {
+                        temp = rates[i];
+                        rates[i] = rates[j];
+                        rates[j] = temp;
+                    }
+                }
+            }
+            double avg = 0;
+            for (int i = 1; i < rates.Length - 1; i++)
+            {
+                avg += rates[i];
+            }
+            avg/=rates.Length-2;
+            Console.WriteLine(avg);
