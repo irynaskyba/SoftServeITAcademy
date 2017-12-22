@@ -1,0 +1,22 @@
+ //task1
+            int firstNumber;
+            int secondNumber;
+            Console.WriteLine("Input two integer numbers: ");
+            string value1 = Console.ReadLine();
+            string value2 = Console.ReadLine();
+            firstNumber = Int32.Parse(value1);
+            secondNumber = Int32.Parse(value2);
+            int count = 0;
+            for(int i = firstNumber; i <= secondNumber; i++)
+            {
+                if (i % 3 == 0)
+                {
+                    count++;
+                }
+            }
+            Console.WriteLine("{0} numbers are divided by 3 in the range [{1}, {2}]", count, firstNumber, secondNumber);
+
+            //task2
+            Console.WriteLine("Input characters: ");
+            string sequence = Console.ReadLine();
+            string[] arrayCharacters = sequence.Split();
