@@ -1,0 +1,21 @@
+enum TestCaseStatus { Pass, Fail, Blocked, WP, Unexecuted };
+            //task1
+            TestCaseStatus test1Status = TestCaseStatus.Pass;
+            Console.WriteLine("Status of test1 is {0}", test1Status);
+
+            //HW2
+            float firstNum;
+            float secondNum;
+            float thirdNum;
+            Console.WriteLine("Input three float numbers: ");
+            string value1 = Console.ReadLine();
+            string value2 = Console.ReadLine();
+            string value3 = Console.ReadLine();
+            firstNum = float.Parse(value1);
+            secondNum = float.Parse(value2);
+            thirdNum = float.Parse(value3);
+            string check = ((firstNum >= -5 && firstNum <= 5)
+                && (secondNum >= -5 && secondNum <= 5)
+                && (thirdNum >= -5 && thirdNum <= 5)) ? "Entered numbers belong to the range [-5, 5]" : 
+                "Entered numbers do not belong to the range [-5, 5]";
+            Console.WriteLine(check);
