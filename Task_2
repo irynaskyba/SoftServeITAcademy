@@ -4,6 +4,7 @@ int n = 39;
             {
                 y = i + Math.Cos(y);
             }
+            y = Math.Cos(y);
             Console.Write("y=cos(1+cos(2+...+cos(39+cos40)...)) = " + y);
 
             Console.WriteLine("\n\nInput amount of rates (>3): ");
