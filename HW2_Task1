@@ -1,0 +1,175 @@
+//Class Country
+private int id;
+        private string name;
+        private int area;
+        private int population;
+        private string continent;
+
+        public Country() { }
+
+        public Country(int id, string name, int area, int population, string continent)
+        {
+            this.id = id;
+            this.name = name;
+            this.area = area;
+            this.population = population;
+            this.continent = continent;
+        }
+
+        public int Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
+
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+
+        public int Area
+        {
+            get { return area; }
+            set { area = value; }
+        }
+
+        public int Population
+        {
+            get { return population; }
+            set { population = value; }
+        }
+
+        public string Continet
+        {
+            get { return continent; }
+            set { continent = value; }
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0,7} \t {1,7} \t {2,-10} \t {3,-13}", id, area, population, continent);
+        }
+
+        public override bool Equals(object obj)
+        {
+            Country country = obj as Country;
+            if (country != null)
+            {
+                if ((id == country.id) && (name == country.name) && (area == country.area) && (population == country.population) && (continent == country.continent))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public void Input()
+        {
+            Console.WriteLine("Input id of country: ");
+            string inputId = Console.ReadLine();
+            id = Int32.Parse(inputId);
+            Console.WriteLine("Input name of country: ");
+            name = Console.ReadLine();
+            Console.WriteLine("Input area of country: ");
+            string inputArea = Console.ReadLine();
+            area = Int32.Parse(inputArea);
+            Console.WriteLine("Input population of country: ");
+            string inputPopulation = Console.ReadLine();
+            population = Int32.Parse(inputPopulation);
+            Console.WriteLine("Input continent of country: ");
+            continent = Console.ReadLine();
+        }
+
+        public void Output()
+        {
+            Console.WriteLine(this.ToString());
+        }
+
+        public object Clone()
+        {
+            Country newCountry = new Country(this.id, this.name, this.area, this.population, this.continent);
+            return newCountry;
+        }
+        
+        
+        
+        
+        
+        
+ // Main
+ Country greatBritain = new Country(1, "Great Britain", 243809, 63395574, "Europe");
+            Console.WriteLine("{0,7} \t {1,7} \t {2,-10} \t {3,-13}", "Country", "Area", "Population", "Continent");
+            List<Country> countries = new List<Country>();
+            countries.Add(greatBritain);
+            for (int i = 0; i < 10; i++)
+            {
+                Country newGreatBritain = (Country)countries[i].Clone();
+                newGreatBritain.Id++;
+                countries.Add(newGreatBritain);
+            }
+            List<Country> sortedCountries =  Sort(countries);
+            CountriesOutput(sortedCountries);
+
+        }
+        
+        static void CountriesOutput(List<Country> countries)
+        {
+            foreach (Country value in countries)
+            {
+                value.Output();
+            }
+        }
+
+        static List<Country> Sort(List<Country> countries)
+        {
+            Country temp;
+            for (int i = 0; i < countries.Count - 1; i++)
+            {
+                for (int j = i + 1; j < countries.Count; j++)
+                {
+                    if (countries[i].Id > countries[j].Id)
+                    {
+                        temp = countries[i];
+                        countries[i] = countries[j];
+                        countries[j] = temp;
+                    }
+                }
+            }
+            return countries;
+        }
+
+        static int GetPopulationInEurope(List<Country> countries)
+        {
+            int populationEuropeanCountries = 0;
+            foreach (Country value in countries)
+            {
+                value.Output();
+                if (value.Continet == "Europe")
+                {
+                    populationEuropeanCountries += value.Population;
+                }
+            }
+            return populationEuropeanCountries;
+        }
+
+        static void OutputContinentArea(List<Country> countries)
+        {
+            while(countries.Count != 0)
+            {
+                int counter = 0;
+                foreach(Country value in countries)
+                {
+                    if(countries[0].Continet == value.Continet)
+                    {
+                        counter += value.Area;
+                    }
+                }
+            }
