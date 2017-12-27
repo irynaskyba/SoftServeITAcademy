@@ -1,0 +1,89 @@
+#Class Numbers
+private List<double> numbers;
+
+        public Numbers(List<double> numbers)
+        {
+            this.numbers = numbers;
+        }
+
+        public void OutputSortedArray()
+        {
+            numbers.Sort();
+            Console.Write("Your array: ");
+            foreach (double var in numbers)
+            {
+                Console.Write(var + " ");
+            }
+            Console.WriteLine();
+        }
+
+        public List<double> AddOneVariable()
+        {
+            Console.WriteLine("Input one number: ");
+            double variable = double.Parse(Console.ReadLine());
+            for(int i = 0; i < numbers.Count; i++)
+            {
+                if (numbers[i] > variable)
+                {
+                    numbers.Insert(i-1, variable);
+                    break;
+                }
+            }
+            return numbers;
+        }
+
+        public List<double> AddManyVariables()
+        {
+            Console.WriteLine("Input amount of numbers to add: ");
+            int amount = Int32.Parse(Console.ReadLine());
+            for (int i = 0; i < amount; i++)
+            {
+                Console.WriteLine("Input number: ");
+                double variable = Double.Parse(Console.ReadLine());
+                for (int k = 0; k < numbers.Count; k++)
+                {
+                    if (numbers[k] > variable)
+                    {
+                        numbers.Insert(k - 1, variable);
+                        break;
+                    }
+                }
+
+            }
+
+            return numbers;
+        }
+        
+        #Main
+        List<double> list = new List<double>();
+            Console.WriteLine("Input amount of numbers: ");
+            int numbers = Int32.Parse(Console.ReadLine());
+
+            for(int i = 1; i < numbers + 1; i++)
+            {
+                Console.WriteLine("Input ["+ i +"] number");
+                list.Add(double.Parse(Console.ReadLine()));
+            }
+
+            Numbers nums = new Numbers(list);
+            
+            Console.WriteLine("1 - Add one variable to array \n" +
+                "2 - Add many variables to array\n");
+            int var = int.Parse(Console.ReadLine());
+
+            switch (var)
+            {
+                case 1:
+                    nums.AddOneVariable();
+                    nums.OutputSortedArray();
+                    break;
+                case 2:
+                    nums.AddManyVariables();
+                    nums.OutputSortedArray();
+                    break;
+                default:
+                    Console.WriteLine("Incorect number!");
+                    break;     
+            }
+            
+            Console.ReadLine();
