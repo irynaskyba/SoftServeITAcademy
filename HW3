@@ -1,0 +1,129 @@
+//Shape
+private string name;
+
+        public Shape(string name)
+        {
+            this.name = name;
+        }
+
+        public string Name {
+            get { return name; }
+            set { name = value; }
+        }
+
+        public abstract double Area();
+
+        public abstract double Perimeter();
+        
+//Square
+private double side;
+
+        public Square(double side, string name) : base(name)
+        {
+            this.side = side;
+        }
+
+        public double Side
+        {
+            get { return side; }
+            set { side = value; }
+        }
+
+        public override double Area()
+        {
+            return side * side;
+        }
+
+        public override double Perimeter()
+        {
+            return 4 * side;
+        }
+        
+        
+//Circle
+private double radius;
+
+        public Circle(double radius, string name) : base(name)
+        {
+            this.radius = radius;
+        }
+
+        public double Radius {
+            get { return radius; }
+            set { radius = value; }
+        }
+
+        public override double Area()
+        {
+            return (Math.PI * radius * radius);
+            
+        }
+
+        public override double Perimeter()
+        {
+            return 2 * Math.PI * radius;
+        }
+        
+//ManageShapes
+private List<Shape> shapes;
+        
+        public ManageShapes()
+        {
+            shapes = new List<Shape>();
+        }
+
+        public ManageShapes(List<Shape> shapes)
+        {
+            this.shapes = shapes;
+        }
+
+        public List<Shape> Shapes
+        {
+            get { return shapes; }
+            set { shapes = value; }
+        }
+
+        public void AddToList(int amount)
+        {
+            for (int k = 0; k < amount; k++)
+            {
+                Console.WriteLine("1 - add circle to a list\n2 - add square to a list");
+                int choice = Int32.Parse(Console.ReadLine());
+                switch (choice)
+                {
+                    case 1:
+                        Console.WriteLine("Enter radius of circle: ");
+                        double radius = Double.Parse(Console.ReadLine());
+                        Shape circle = new Circle(radius, "blabla");
+                        shapes.Add(circle);
+                        break;
+                    case 2:
+                        Console.WriteLine("Enter side of square: ");
+                        double side = Double.Parse(Console.ReadLine());
+                        Shape square = new Square(side, "blblb");
+                        shapes.Add(square);
+                        break;
+                    default:
+                        Console.WriteLine("Wrong option.");
+                        break;
+                }
+            }
+        }
+
+        public void Output()
+        {
+            foreach(var shape in shapes)
+            {
+                Console.WriteLine(shape.Name + shape.Area());
+            }
+        }
+
+        public void FindByArea()
+        {
+            var newList = shapes.Where(s => (s.Area() > 10) && (s.Area() < 100))
+                                        .Select(s => new { Name = s.Name, Area = s.Area()});
+            foreach (var shape in newList)
+            {
+                Console.WriteLine(shape.Name.ToString() + shape.Area.ToString());
+            }
+        }
