@@ -1,0 +1,56 @@
+//Student
+private string name;
+
+		private List<int> marks = new List<int>();
+
+		public event MyDelegate NewMark;
+
+		public void AddMark(int mark)
+		{
+			marks.Add(mark);
+			if (NewMark != null)
+			{
+				NewMark(mark);
+			}
+		}
+    
+    
+//Parent
+public void SendSms(int mark)
+		{
+			Console.WriteLine("SMS: new mark {0}", mark);
+		}
+    
+    
+    
+//MyDelegate
+public delegate void MyDelegate(int m);
+
+
+//Main
+//public delegate double Function(double number);
+
+		//public static void Tabulation(Function f, double a, double b, int n)
+		//{
+		//	for (int k = 0; k < n; k++)
+		//	{
+		//		Console.WriteLine(f(a + (k * ((b-a) / n))));
+		//	}
+
+		//}
+
+		static void Main(string[] args)
+		{
+			//	Tabulation(Math.Sin, 0, 2*Math.PI, 10);
+			//	Console.WriteLine();
+			//	Tabulation(x => 2*(x*x) + 3 * x * Math.Cos(x*x*x), 0, 2*Math.PI, 10);
+			//}
+			Student st1 = new Student();
+			Parent dad1 = new Parent();
+			st1.NewMark += dad1.SendSms;
+			st1.AddMark(4);
+			st1.AddMark(5);
+			Parent mom1 = new Parent();
+			st1.NewMark += mom1.SendSms;
+			st1.AddMark(2);
+		}
