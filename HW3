@@ -66,7 +66,7 @@ private double radius;
         
 //ManageShapes
 private List<Shape> shapes;
-        
+
         public ManageShapes()
         {
             shapes = new List<Shape>();
@@ -94,13 +94,13 @@ private List<Shape> shapes;
                     case 1:
                         Console.WriteLine("Enter radius of circle: ");
                         double radius = Double.Parse(Console.ReadLine());
-                        Shape circle = new Circle(radius, "blabla");
+                        Shape circle = new Circle(radius);
                         shapes.Add(circle);
                         break;
                     case 2:
                         Console.WriteLine("Enter side of square: ");
                         double side = Double.Parse(Console.ReadLine());
-                        Shape square = new Square(side, "blblb");
+                        Shape square = new Square(side);
                         shapes.Add(square);
                         break;
                     default:
@@ -110,20 +110,42 @@ private List<Shape> shapes;
             }
         }
 
-        public void Output()
+        public void FindByArea()
         {
-            foreach(var shape in shapes)
+            var newList = shapes.Where(s => (s.Area() >= 10) && (s.Area() <= 100))
+                                        .Select(s => new { Name = s.Name, Area = s.Area(), Perimeter = s.Perimeter() });
+            using (StreamWriter writer = new StreamWriter(@"C:\Users\Iryna\source\repos\SoftHW3\ConsoleApp1\shapes.txt", true))
             {
-                Console.WriteLine(shape.Name + shape.Area());
+                writer.WriteLine("Names of shapes with area in range [10, 100]");
+                writer.WriteLine("{0, -6} \t {1, 4} \t {2, 8}", "Name", "Area", "Perimeter");
+                foreach (var shape in newList)
+                {
+                    writer.WriteLine("{0, -6} \t {1, 4} \t {2, 8}", shape.Name, Math.Ceiling(shape.Area), Math.Ceiling(shape.Perimeter));
+                }
             }
         }
 
-        public void FindByArea()
+        public void ContainsA()
         {
-            var newList = shapes.Where(s => (s.Area() > 10) && (s.Area() < 100))
-                                        .Select(s => new { Name = s.Name, Area = s.Area()});
+            var newList = shapes.Where(s => s.Name.Contains("a"))
+                                        .Select(s => new { Name = s.Name, Area = Math.Ceiling(s.Area()), Perimeter = s.Perimeter() });
+            using (StreamWriter writer = new StreamWriter(@"C:\Users\Iryna\source\repos\SoftHW3\ConsoleApp1\shapes.txt", true))
+            {
+                writer.WriteLine("Names of shapes that contains \"a\":");
+                writer.WriteLine("{0, -6} \t {1, 4} \t {2, 8}", "Name", "Area", "Perimeter");
+                foreach (var shape in newList)
+                {
+                    writer.WriteLine("{0, -6} \t {1, 4} \t {2, 8}", shape.Name, Math.Ceiling(shape.Area), Math.Ceiling(shape.Perimeter));
+                }
+            }
+        }
+
+        public void FindByPerimeter()
+        {
+            var newList = shapes.Where(s => s.Perimeter() >= 5)
+                                        .Select(s => new { Name = s.Name, Area = Math.Ceiling(s.Area()), Perimeter = s.Perimeter() });
             foreach (var shape in newList)
             {
-                Console.WriteLine(shape.Name.ToString() + shape.Area.ToString());
+                Console.WriteLine(shape.Name.ToString() + " " + shape.Perimeter.ToString());
             }
         }
